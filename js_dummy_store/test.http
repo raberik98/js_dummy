@@ -1,0 +1,37 @@
+###
+GET http://localhost:8081/api/store/v1/products
+
+
+###
+GET http://localhost:8081/api/store/v1/product/68da71200432055d0bbac436
+
+
+###
+POST http://localhost:8081/api/store/v1/product
+Content-Type: application/json
+Cookie: authToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGRhNzBlZWU1OWFiZWRjMDZkNTYwNWYiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB1c3IuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzU5MTQ2MjIyLCJleHAiOjE3NTk3NTEwMjJ9.9JAm_avjz6W7z8GC4lsZVtudQz4aiFO3vjziO8LV3XY; Max-Age=604800; Path=/; Expires=Mon, 06 Oct 2025 11:43:42 GMT; HttpOnly; SameSite=Strict
+
+{
+    "name": "Item",
+    "description": "Good item",
+    "price": 200,
+    "quantity": 20,
+    "available": true
+}
+
+###
+PUT http://localhost:8081/api/store/v1/product/68da71200432055d0bbac436
+Content-Type: application/json
+Cookie: authToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGRhNzBlZWU1OWFiZWRjMDZkNTYwNWYiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB1c3IuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzU5MTQ2MjIyLCJleHAiOjE3NTk3NTEwMjJ9.9JAm_avjz6W7z8GC4lsZVtudQz4aiFO3vjziO8LV3XY; Max-Age=604800; Path=/; Expires=Mon, 06 Oct 2025 11:43:42 GMT; HttpOnly; SameSite=Strict
+
+{
+    "name": "Item 2",
+    "description": "Good item 2",
+    "price": 230,
+    "quantity": 210,
+    "available": false
+}
+
+###
+DELETE http://localhost:8081/api/store/v1/product/68da71590432055d0bbac440
+Cookie: authToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGRhNzBlZWU1OWFiZWRjMDZkNTYwNWYiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB1c3IuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzU5MTQ2MjIyLCJleHAiOjE3NTk3NTEwMjJ9.9JAm_avjz6W7z8GC4lsZVtudQz4aiFO3vjziO8LV3XY; Max-Age=604800; Path=/; Expires=Mon, 06 Oct 2025 11:43:42 GMT; HttpOnly; SameSite=Strict

@@ -1,0 +1,46 @@
+###
+POST http://localhost:8080/api/auth/v1/register
+Content-Type: application/json
+
+{
+    "username": "usr",
+    "email": "usr@usr.com",
+    "password" : "pwd"
+}
+
+###
+POST http://localhost:8080/api/auth/v1/register
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "email": "admin@usr.com",
+    "password" : "adminpwd",
+    "role": "admin"
+}
+
+###
+POST http://localhost:8080/api/auth/v1/login
+Content-Type: application/json
+
+{
+    "email": "usr@usr.com",
+    "password" : "pwd"
+}
+
+
+###
+POST http://localhost:8080/api/auth/v1/logout
+Content-Type: application/json
+Cookie: authToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGNkMDgxMmViOGUwN2JmOTcxNGE3MjYiLCJ1c2VybmFtZSI6InVzciIsInJvbGUiOiJDb25zdW1lciIsImlhdCI6MTc1ODI2Nzg0MSwiZXhwIjoxNzU4ODcyNjQxfQ.396fxlxJ39TwL00BVl4S8MUdqi5agcjCzuEU1rTwN8g; Max-Age=604800; Path=/; Expires=Fri, 26 Sep 2025 07:44:01 GMT; HttpOnly; SameSite=Strict
+
+{
+}
+
+###
+POST http://localhost:8080/api/auth/v1/authenticate
+Content-Type: application/json
+
+{
+    "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGRhNmUwNzdjZjQ3MmE2NjMzMDJlN2YiLCJ1c2VybmFtZSI6InVzciIsInJvbGUiOiJDb25zdW1lciIsImlhdCI6MTc1OTE0NTc5MCwiZXhwIjoxNzU5NzUwNTkwfQ.Ru7fHoLS8gfEdYYC3vJfs3DuK8VgqFZLnIg0YnwrLyk"
+}

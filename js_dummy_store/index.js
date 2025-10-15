@@ -17,7 +17,7 @@ const { CON_STRING, PORT } = config
 const ROUTE_PREFIX = "/api/store/v1"
 
 app.use(express.json())
-app.use(cookieParser());
+app.use(cookieParser())
 
 app.get(ROUTE_PREFIX+"/products", GetAllProducts)
 app.get(ROUTE_PREFIX+"/product/:id", GetProductById)

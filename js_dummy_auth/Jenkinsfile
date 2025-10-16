@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo 'Checking out code from GitHub...'
                 echo "${GITHUB_REPO}"
-                git url: '${GITHUB_REPO}', branch: 'projects'
+                git url: "${GITHUB_REPO}", branch: 'projects'
             }
         }
         stage("Build auth service") {

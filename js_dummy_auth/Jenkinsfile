@@ -11,12 +11,12 @@ pipeline {
         stage('Clone repository') {
             steps {
                 echo 'Checking out code from GitHub...'
+                echo "${GITHUB_REPO}"
                 git url: '${GITHUB_REPO}', branch: 'projects'
             }
         }
         stage("Build auth service") {
             steps {
-                echo "${GITHUB_REPO}"
                 script {
                     docker.build("${IMAGE_NAME}:${IMAGE_TAG}", "-f js_dummy_auth/Dockerfile js_dummy_auth")
                     echo "Built Docker image: ${ECR_REGISTRY}:${IMAGE_TAG}"

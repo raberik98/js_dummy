@@ -1,5 +1,7 @@
 resource "aws_ecr_repository" "this" {
-  name                 = "${var.project_name}-ecr"
+  count = length(var.repositories)
+
+  name                 = var.repositories[count.index]
   image_tag_mutability = "MUTABLE"
   force_delete = true
 
@@ -8,7 +10,7 @@ resource "aws_ecr_repository" "this" {
   }
 
   tags = {
-    Name = "${var.project_name}-ecr"
+    Name = var.repositories[count.index]
   }
 }
 

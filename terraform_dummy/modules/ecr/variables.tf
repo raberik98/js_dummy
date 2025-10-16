@@ -2,3 +2,7 @@ variable "project_name" {
   description = "This value will be used as a tag for the related AWS resources!"
   type        = string
 }
+
+variable "repositories" {
+  type = list(string)
+}

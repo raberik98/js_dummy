@@ -1,5 +1,5 @@
-output "ecr_url" {
-  value = module.ecr.erc_url
+output "erc_urls" {
+  value = module.ecr.erc_urls
 }
 
 output "jenkins_role_arn" {

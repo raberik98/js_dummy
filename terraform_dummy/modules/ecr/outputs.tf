@@ -1,5 +1,5 @@
-output "erc_url" {
-  value = aws_ecr_repository.this.repository_url
+output "erc_urls" {
+  value = aws_ecr_repository.this[*].repository_url
 }
 
 output "jenkins_role_arn" {

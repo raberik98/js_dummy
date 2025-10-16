@@ -1,0 +1,61 @@
+pipeline {
+    agent any
+    environment { 
+        IMAGE_TAG = "${env.BUILD_NUMBER}"  
+        IMAGE_NAME = "auth"
+        ECR_REGISTRY = "${env.AUTH_REGISTRY}"
+        AWS_REGION = "${env.AWS_REGION}"
+    }
+    stages {
+        stage('Clone repository') {
+            steps {
+                echo 'Checking out code from GitHub...'
+                git url: 'https://github.com/raberik98/js_dummy.git', branch: 'projects'
+            }
+        }
+        stage("Build auth service") {
+            steps {
+                script {
+                    docker.build("${IMAGE_NAME}:${IMAGE_TAG}", "-f js_dummy_auth/Dockerfile js_dummy_auth")
+                    echo "Built Docker image: ${ECR_REGISTRY}:${IMAGE_TAG}"
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                script {
+                    sh '''
+                        echo "----------------------------------"
+                        echo "I guess some test would come here."
+                        echo "----------------------------------"
+                    '''
+                }
+            }
+        }
+        stage('Push to ECR') {
+            steps {
+                script {
+                    docker.withRegistry("https://${ECR_REGISTRY}", "ecr:${AWS_REGION}:aws") {
+                        
+                        sh "docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${ECR_REGISTRY}:${IMAGE_TAG}"
+                        sh "docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${ECR_REGISTRY}:latest"
+                        
+                        sh "docker push ${ECR_REGISTRY}:${IMAGE_TAG}"
+                        sh "docker push ${ECR_REGISTRY}:latest"
+                    }
+                }
+            }
+        }
+    }
+    post {
+        always {
+            sh "docker rmi ${ECR_REGISTRY}:${IMAGE_TAG} || true"
+        }
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
+    }
+}

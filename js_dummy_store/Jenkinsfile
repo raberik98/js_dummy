@@ -5,12 +5,14 @@ pipeline {
         IMAGE_NAME = "auth"
         ECR_REGISTRY = "${env.AUTH_REGISTRY}"
         AWS_REGION = "${env.AWS_REGION}"
+        GITHUB_REPO = "${env.JS_DUMMY_GITHUB}"
     }
     stages {
         stage('Clone repository') {
             steps {
                 echo 'Checking out code from GitHub...'
-                git url: 'https://github.com/raberik98/js_dummy.git', branch: 'projects'
+                echo "${GITHUB_REPO}"
+                git url: "${GITHUB_REPO}", branch: 'projects'
             }
         }
         stage("Build auth service") {

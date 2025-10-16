@@ -2,8 +2,8 @@ pipeline {
     agent any
     environment { 
         IMAGE_TAG = "${env.BUILD_NUMBER}"  
-        IMAGE_NAME = "auth"
-        ECR_REGISTRY = "${env.AUTH_REGISTRY}"
+        IMAGE_NAME = "orders"
+        ECR_REGISTRY = "${env.ORDERS_REGISTRY}"
         AWS_REGION = "${env.AWS_REGION}"
         GITHUB_REPO = "${env.JS_DUMMY_GITHUB}"
     }
@@ -18,7 +18,7 @@ pipeline {
         stage("Build auth service") {
             steps {
                 script {
-                    docker.build("${IMAGE_NAME}:${IMAGE_TAG}", "-f js_dummy_auth/Dockerfile js_dummy_auth")
+                    docker.build("${IMAGE_NAME}:${IMAGE_TAG}", "-f js_dummy_orders/Dockerfile js_dummy_orders")
                     echo "Built Docker image: ${ECR_REGISTRY}:${IMAGE_TAG}"
                 }
             }

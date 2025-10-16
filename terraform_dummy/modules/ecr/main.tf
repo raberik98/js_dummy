@@ -43,7 +43,7 @@ resource "aws_iam_policy" "jenkins_ecr_policy" {
         Action = [
           "ecr:GetAuthorizationToken"
         ]
-        Resource = aws_ecr_repository.this.arn
+        Resource = aws_ecr_repository.this[*].arn
       },
       {
         Effect = "Allow"
@@ -64,7 +64,7 @@ resource "aws_iam_policy" "jenkins_ecr_policy" {
           "ecr:DeleteRepository",
           "ecr:CreateRepository"
         ]
-        Resource = aws_ecr_repository.this.arn
+        Resource = aws_ecr_repository.this[*].arn
       }
     ]
   })

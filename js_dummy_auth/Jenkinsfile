@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     docker.build("${IMAGE_NAME}:${IMAGE_TAG}", "-f js_dummy_auth/Dockerfile js_dummy_auth")
-                    echo "Built Docker image: ${ECR_REGISTRY}:${IMAGE_TAG}"
+                    echo "Built Docker image: ${ECR_REGISTRY}:${IMAGE_TAG}" 
                 }
             }
         }

@@ -79,38 +79,38 @@ resource "aws_iam_role_policy_attachment" "jenkins_ecr_policy_attachment" {
 
 
 
-# resource "aws_iam_user" "jenkins_user" {
-#   name = "jenkins-user"
-# }
+resource "aws_iam_user" "jenkins_user" {
+  name = "jenkins-user"
+}
 
-# resource "aws_iam_group" "jenkins_group" {
-#   name = "jenkins-group"
-# }
+resource "aws_iam_group" "jenkins_group" {
+  name = "jenkins-group"
+}
 
-# resource "aws_iam_policy" "assume_jenkins_ecr_role_policy" {
-#   name        = "AssumeJenkinsEcrRolePolicy"
-#   description = "Allows assuming only the jenkins_ecr_role"
+resource "aws_iam_policy" "assume_jenkins_ecr_role_policy" {
+  name        = "AssumeJenkinsEcrRolePolicy"
+  description = "Allows assuming only the jenkins_ecr_role"
 
-#   policy = jsonencode({
-#     Version = "2012-10-17",
-#     Statement = [
-#       {
-#         Effect   = "Allow",
-#         Action   = "sts:AssumeRole",
-#         Resource = aws_iam_role.jenkins_ecr_role.arn
-#       }
-#     ]
-#   })
-# }
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect   = "Allow",
+        Action   = "sts:AssumeRole",
+        Resource = aws_iam_role.jenkins_ecr_role.arn
+      }
+    ]
+  })
+}
 
-# resource "aws_iam_group_policy_attachment" "jenkins_group_policy_attach" {
-#   group      = aws_iam_group.jenkins_group.name
-#   policy_arn = aws_iam_policy.assume_jenkins_ecr_role_policy.arn
-# }
+resource "aws_iam_group_policy_attachment" "jenkins_group_policy_attach" {
+  group      = aws_iam_group.jenkins_group.name
+  policy_arn = aws_iam_policy.assume_jenkins_ecr_role_policy.arn
+}
 
-# resource "aws_iam_user_group_membership" "jenkins_user_group_membership" {
-#   user = aws_iam_user.jenkins_user.name
-#   groups = [
-#     aws_iam_group.jenkins_group.name
-#   ]
-# }
+resource "aws_iam_user_group_membership" "jenkins_user_group_membership" {
+  user = aws_iam_user.jenkins_user.name
+  groups = [
+    aws_iam_group.jenkins_group.name
+  ]
+}

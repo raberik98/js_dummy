@@ -43,7 +43,7 @@ resource "aws_iam_policy" "jenkins_ecr_policy" {
         Action = [
           "ecr:GetAuthorizationToken"
         ]
-        Resource = aws_ecr_repository.this[*].arn
+        Resource = "*"
       },
       {
         Effect = "Allow"
@@ -97,6 +97,7 @@ resource "aws_iam_policy" "assume_jenkins_ecr_role_policy" {
       {
         Effect   = "Allow",
         Action   = "sts:AssumeRole",
+        Principal = "${aws_iam_user.jenkins_user.arn}",
         Resource = aws_iam_role.jenkins_ecr_role.arn
       }
     ]
